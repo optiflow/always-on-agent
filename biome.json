@@ -9,7 +9,20 @@
     "enabled": true
   },
   "files": {
-    "includes": ["**", "!node_modules", "!dist", "!.astro", "!pnpm-lock.yaml"]
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/.turbo",
+      "!**/.astro",
+      "!pnpm-lock.yaml",
+      "!issues",
+      "!contracts",
+      "!runbooks",
+      "!deploys",
+      "!README.md",
+      "!compliance-policy.md"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -24,10 +37,7 @@
     }
   },
   "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true
-    }
+    "enabled": true
   },
   "vcs": {
     "clientKind": "git",

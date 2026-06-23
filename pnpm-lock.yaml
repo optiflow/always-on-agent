@@ -70,9 +70,6 @@ importers:
 
   packages/core:
     devDependencies:
-      tsx:
-        specifier: latest
-        version: 4.22.4
       vitest:
         specifier: latest
         version: 4.1.9(@types/node@24.13.2)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.28.1)(tsx@4.22.4))
@@ -5591,6 +5588,7 @@ snapshots:
       esbuild: 0.28.1
     optionalDependencies:
       fsevents: 2.3.3
+    optional: true
 
   turbo@2.9.18:
     optionalDependencies:

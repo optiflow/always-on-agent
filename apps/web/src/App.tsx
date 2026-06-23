@@ -1,4 +1,11 @@
 import {
+  type AgentRun,
+  type ComplianceFinding,
+  createStarterData,
+  type IncidentFinding,
+  runAgent,
+} from "@always-on-agent/core";
+import {
   AlertTriangle,
   Bot,
   CheckCircle2,
@@ -12,16 +19,9 @@ import {
   ShieldCheck,
   Siren,
   Workflow,
-  Zap
+  Zap,
 } from "lucide-react";
 import { useMemo, useState } from "react";
-import {
-  createStarterData,
-  runAgent,
-  type AgentRun,
-  type ComplianceFinding,
-  type IncidentFinding
-} from "@always-on-agent/core";
 
 const scanInterval = import.meta.env.VITE_AGENT_SCAN_INTERVAL_MINUTES ?? "5";
 
@@ -33,11 +33,12 @@ export default function App() {
   const run = useMemo(
     () =>
       runAgent(createStarterData(), {
-        now: new Date(Date.UTC(2026, 4, 20, 8, runCount, 0)).toISOString()
+        now: new Date(Date.UTC(2026, 4, 20, 8, runCount, 0)).toISOString(),
       }),
-    [runCount]
+    [runCount],
   );
-  const selected = run.incidents.find((finding) => finding.issue.id === selectedId) ?? run.incidents[0];
+  const selected =
+    run.incidents.find((finding) => finding.issue.id === selectedId) ?? run.incidents[0];
   const criticalCount = run.incidents.filter((finding) => finding.severity === "P0").length;
   const driftCount = run.compliance.filter((finding) => finding.status === "fail").length;
 
@@ -135,14 +136,22 @@ function Stat(props: { label: string; value: string; tone: "danger" | "warning" 
 
 function Flow({ run }: { run: AgentRun }) {
   return (
-    <div className="agent-flow" aria-label="Agent loop">
+    <ul className="agent-flow" aria-label="Agent loop">
       {run.loop.map((step, index) => (
-        <div className="flow-step" key={step}>
+        <li className="flow-step" key={step}>
           <span>{index + 1}</span>
-          <p>{step.split(" ").slice(0, 2).join(" ")}</p>
-        </div>
+          <p>{flowLabel(index, step)}</p>
+        </li>
       ))}
-    </div>
+    </ul>
+  );
+}
+
+function flowLabel(index: number, fallback: string): string {
+  return (
+    ["Scan local", "Correlate symptoms", "Decide severity", "Draft Slack", "Wait approval"][
+      index
+    ] ?? fallback
   );
 }
 
@@ -289,7 +298,9 @@ function ComplianceBand({ findings }: { findings: ComplianceFinding[] }) {
               {finding.status === "pass" ? <CheckCircle2 size={18} /> : <AlertTriangle size={18} />}
             </div>
             <h3>{finding.counterparty}</h3>
-            <p>{finding.status === "pass" ? "No policy drift found." : finding.violations[0]?.policy}</p>
+            <p>
+              {finding.status === "pass" ? "No policy drift found." : finding.violations[0]?.policy}
+            </p>
             <small>{finding.source}</small>
           </article>
         ))}
@@ -303,7 +314,7 @@ function formatTime(value: string): string {
     hour: "2-digit",
     minute: "2-digit",
     timeZone: "UTC",
-    timeZoneName: "short"
+    timeZoneName: "short",
   }).format(new Date(value));
 }
 

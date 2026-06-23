@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { runAgent } from "./agent";
-import { createStarterData } from "./data";
+import { runAgent } from "./agent.js";
+import { createStarterData } from "./data.js";
 
 const run = runAgent(createStarterData(), { now: "2026-05-20T08:00:00Z" });
 
@@ -11,10 +11,10 @@ describe("runAgent", () => {
     expect(first?.issue.id).toBe("PROD-4521");
     expect(first?.severity).toBe("P0");
     expect(first?.evidence.some((item) => item.title.includes("payment-service v4.8.2"))).toBe(
-      true
+      true,
     );
     expect(first?.evidence.some((item) => item.detail.includes("PaymentService.java:142"))).toBe(
-      true
+      true,
     );
   });
 

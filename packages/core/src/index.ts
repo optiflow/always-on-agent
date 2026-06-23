@@ -1,5 +1,5 @@
-export { createStarterData, starterData } from "./data";
-export { runAgent } from "./agent";
+export { runAgent } from "./agent.js";
+export { createStarterData, starterData } from "./data.js";
 export type {
   ActionDraft,
   AgentInput,
@@ -13,5 +13,5 @@ export type {
   IncidentFinding,
   Issue,
   Runbook,
-  Severity
-} from "./types";
+  Severity,
+} from "./types.js";

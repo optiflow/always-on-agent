@@ -10,12 +10,12 @@
     }
   },
   "scripts": {
-    "agent:run": "tsx src/cli.ts",
+    "agent:run": "tsc -p tsconfig.json && node dist/cli.js",
     "build": "tsc -p tsconfig.json",
-    "test": "vitest run"
+    "prebuild": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "test": "vitest run src"
   },
   "devDependencies": {
-    "tsx": "latest",
     "vitest": "latest"
   }
 }

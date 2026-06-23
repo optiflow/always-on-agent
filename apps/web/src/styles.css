@@ -236,6 +236,8 @@ h3 {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(5, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
   padding: 9px;
 }
 
@@ -614,6 +616,11 @@ h3 {
 
   .topbar-actions {
     justify-content: flex-start;
+  }
+
+  .agent-flow {
+    grid-template-columns: 1fr;
+    overflow-x: visible;
   }
 
   .issue-row {

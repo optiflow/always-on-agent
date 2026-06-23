@@ -9,12 +9,12 @@ export default defineConfig({
           items: [
             { label: "Overview", slug: "" },
             { label: "Architecture", slug: "architecture" },
-            { label: "Judge Demo Script", slug: "demo-script" }
+            { label: "Judge Demo Script", slug: "demo-script" },
           ],
-          label: "Hackathon Demo"
-        }
+          label: "Hackathon Demo",
+        },
       ],
-      title: "Always-On Ops Agent"
-    })
-  ]
+      title: "Always-On Ops Agent",
+    }),
+  ],
 });

@@ -1,5 +1,5 @@
-import { runAgent } from "./agent";
-import { createStarterData } from "./data";
+import { runAgent } from "./agent.js";
+import { createStarterData } from "./data.js";
 
 const run = runAgent(createStarterData());
 
