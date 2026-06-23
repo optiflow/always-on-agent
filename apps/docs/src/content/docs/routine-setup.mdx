@@ -1,0 +1,95 @@
+---
+title: Routine Setup
+description: Exact setup path for the Claude Routine handoff.
+---
+
+# Routine Setup
+
+Use this page when a teammate needs to create the Claude Routine.
+
+## Before You Start
+
+Run the repo once:
+
+```bash
+pnpm install
+pnpm lint
+pnpm test
+pnpm build
+```
+
+Push the repo to GitHub before attaching it to a routine.
+
+## Routine Settings
+
+- Name: `Always-On Ops Agent`
+- Repository: this repo
+- Environment: default cloud environment
+- Connectors: remove all connectors that are not needed for the demo
+- Branch pushes: keep Claude defaults; do not enable unrestricted branch pushes
+- First trigger: Run now
+- Demo trigger: API
+
+Use this saved routine prompt:
+
+```text
+You are the Always-On Ops Agent for this repo.
+Read CLAUDE.md and AGENTS.md before acting.
+Use only repo files unless the trigger text explicitly asks for external lookup.
+
+For incident work:
+- read the target file in issues/
+- check deploys/recent.json
+- read relevant runbooks/
+- write reports/triage-<ISSUE_ID>.md
+
+For compliance work:
+- read compliance-policy.md
+- read every file in contracts/
+- write reports/compliance-scan.md
+
+Every report must cite exact file paths, state confidence, list missing data, and draft external messages only.
+Do not send Slack messages, GitHub comments, emails, or API calls.
+```
+
+## Run Now Path
+
+Use **Run now** before wiring the API trigger.
+
+Prompt:
+
+```text
+Analyze issue PROD-4521. Use only this repo. Write reports/triage-PROD-4521.md with exact evidence paths, immediate actions, confidence, and missing data.
+```
+
+The run is good when it creates a `claude/` branch with `reports/triage-PROD-4521.md`
+and cites:
+
+- `issues/PROD-4521.json`
+- `deploys/recent.json`
+- `runbooks/payment-service-degraded.md`
+
+## API Trigger Path
+
+After the routine works with Run now, add an API trigger in the routine settings.
+Copy the trigger URL and token into `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Then fire the routine:
+
+```bash
+pnpm routine:fire -- "Analyze issue PROD-4521. Use only this repo. Write reports/triage-PROD-4521.md with exact evidence paths."
+```
+
+The script posts a `text` field to the routine `/fire` endpoint and prints the session
+JSON. Open the returned session URL to watch the run.
+
+## Fallbacks
+
+- If API trigger setup fails, use **Run now** with the same prompt.
+- If the routine cannot push a branch, copy the final report from the session into
+  `reports/` and run `pnpm smoke`.
+- If a report lacks exact paths, rerun with: `Cite exact file paths in the Evidence section.`

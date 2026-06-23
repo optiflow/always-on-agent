@@ -5,13 +5,25 @@ description: Exact path for a short hackathon demo.
 
 # Judge Demo Script
 
+## Routine Demo
+
+1. Open the Claude Routine and click **Run now**.
+2. Use the `PROD-4521` prompt from Routine Prompts.
+3. Open the returned session or branch.
+4. Show `reports/triage-PROD-4521.md`.
+5. Point to the chain: `issues/PROD-4521.json` to `deploys/recent.json` to `runbooks/payment-service-degraded.md`.
+6. Show the draft action: approve hotfix, with rollback as the fallback.
+7. Fire the API trigger with `pnpm routine:fire -- "Analyze issue PROD-4487. Use only this repo. Write reports/triage-PROD-4487.md."`
+8. End with the compliance prompt if time remains.
+
+## Local Dashboard Backup
+
 1. Open the dashboard and point to the run state: **Watching every 5 min**.
 2. Click **Run now** to trigger a local agent scan.
 3. Select `PROD-4521`.
-4. Show the chain: `PaymentService.java:142` → `payment-service v4.8.2` → payment runbook.
-5. Show the draft action: approve hotfix, with rollback as the fallback.
-6. Select `PROD-4487` and show tenant-specific Acme correlation.
-7. Point to `PROD-4506` as backlog work, not an incident.
-8. Show the compliance band: Acme and Sirius fail; Globex passes.
+4. Show the chain: `PaymentService.java:142` to `payment-service v4.8.2` to payment runbook.
+5. Select `PROD-4487` and show tenant-specific Acme correlation.
+6. Point to `PROD-4506` as backlog work, not an incident.
+7. Show the compliance band: Acme and Sirius fail; Globex passes.
 
 Close with: the agent is always on, but every external action still needs human approval.

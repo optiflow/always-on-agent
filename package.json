@@ -11,6 +11,8 @@
     "format": "biome format --write .",
     "lint": "biome check .",
     "prepare": "lefthook install",
+    "routine:fire": "bash scripts/fire-routine.sh",
+    "smoke": "bash tests/smoke.sh",
     "test": "turbo test"
   },
   "devDependencies": {

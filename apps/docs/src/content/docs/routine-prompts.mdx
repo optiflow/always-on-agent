@@ -1,0 +1,67 @@
+---
+title: Routine Prompts
+description: Copy-paste prompts for the live routine demo.
+---
+
+# Routine Prompts
+
+Use these prompts with **Run now** or `pnpm routine:fire -- "...prompt..."`.
+
+## Primary Demo
+
+```text
+Analyze issue PROD-4521.
+Use only this repo.
+Write reports/triage-PROD-4521.md.
+Cite exact file paths.
+Explain whether hotfix or rollback is safer.
+Include Decision, Severity, Likely Cause, Evidence, Immediate Actions, Customer/Internal Update, Confidence, and Missing Data.
+```
+
+Expected evidence:
+
+- `issues/PROD-4521.json`
+- `deploys/recent.json`
+- `runbooks/payment-service-degraded.md`
+
+## Tenant Demo
+
+```text
+Analyze issue PROD-4487.
+Use only this repo.
+Determine whether the Acme tenant-specific checkout failure links to a recent config or deploy event.
+Write reports/triage-PROD-4487.md.
+Cite exact file paths and draft a short CSM update.
+```
+
+Expected evidence:
+
+- `issues/PROD-4487.json`
+- `deploys/recent.json`
+- `runbooks/payment-service-degraded.md`
+
+## Compliance Demo
+
+```text
+Scan every file in contracts/ against compliance-policy.md.
+Use only this repo.
+Write reports/compliance-scan.md with pass, fail, or needs legal review by contract.
+Cite exact file paths and list immediate contract changes.
+```
+
+Expected evidence:
+
+- `compliance-policy.md`
+- `contracts/acme-data-platform.md`
+- `contracts/globex-messaging.md`
+- `contracts/sirius-storage.md`
+
+## Backup Incident
+
+```text
+Analyze issue PROD-4498.
+Use only this repo.
+Write reports/triage-PROD-4498.md.
+Explain whether the evidence supports auth-service database pool exhaustion.
+Cite exact file paths and list the next diagnostic check.
+```
