@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { runAgent } from "./agent.js";
+import { maybePolishRunWithClaude } from "./claude.js";
 import { createStarterData } from "./data.js";
 
 const run = runAgent(createStarterData(), { now: "2026-05-20T08:00:00Z" });
@@ -45,5 +46,9 @@ describe("runAgent", () => {
     expect(globex?.violationCount).toBe(0);
     expect(sirius?.status).toBe("fail");
     expect(sirius?.violationCount).toBeGreaterThan(acme?.violationCount ?? 0);
+  });
+
+  it("keeps the deterministic run when no Claude key is available", async () => {
+    await expect(maybePolishRunWithClaude(run, { apiKey: "" })).resolves.toBe(run);
   });
 });

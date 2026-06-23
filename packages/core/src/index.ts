@@ -1,4 +1,5 @@
 export { runAgent } from "./agent.js";
+export { maybePolishRunWithClaude } from "./claude.js";
 export { createStarterData, starterData } from "./data.js";
 export type {
   ActionDraft,
