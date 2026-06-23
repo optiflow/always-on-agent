@@ -1,0 +1,28 @@
+---
+title: Always-On Ops Agent
+description: Hackathon blueprint for the local always-on ops demo.
+---
+
+# Always-On Ops Agent
+
+This repo now contains a local demo of an always-on agent that scans production issues,
+recent deploys, runbooks, vendor contracts, and compliance policy.
+
+The demo claim is simple: the agent does the first 10 minutes of ops work, cites the
+evidence, drafts the next action, and waits for human approval.
+
+## Run it
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Open the web dashboard, click **Run now**, select `PROD-4521`, and show the evidence
+chain from issue to deploy to runbook.
+
+## Main packages
+
+- `packages/core`: deterministic scanner, ranker, action drafts, and compliance drift.
+- `apps/web`: React/Vite dashboard for the judge demo.
+- `apps/docs`: Starlight docs and demo script.

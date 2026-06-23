@@ -1,0 +1,19 @@
+{
+  "name": "@always-on-agent/docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "astro build",
+    "dev": "astro dev --host 0.0.0.0 --port 4321",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "latest",
+    "astro": "latest",
+    "mermaid": "latest"
+  },
+  "devDependencies": {
+    "typescript": "latest"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "always-on-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.5.1",
+  "scripts": {
+    "agent:run": "pnpm --filter @always-on-agent/core agent:run",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "format": "biome format --write .",
+    "lint": "biome check .",
+    "prepare": "lefthook install",
+    "test": "turbo test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "lefthook": "latest",
+    "turbo": "latest",
+    "typescript": "latest"
+  }
+}

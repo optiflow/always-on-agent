@@ -1,0 +1,29 @@
+---
+title: Architecture
+description: How the always-on loop works.
+---
+
+import Mermaid from "../../components/Mermaid.astro";
+
+# Architecture
+
+The build keeps all risky external work behind human approval. The first version is
+deterministic, so the demo works without API keys or network access.
+
+<Mermaid
+  chart={`flowchart LR
+    A[Scan repo data] --> B[Correlate issues, deploys, runbooks, contracts]
+    B --> C[Decide severity and confidence]
+    C --> D[Draft Slack and GitHub actions]
+    D --> E[Wait for human approval]
+    E --> A
+  `}
+/>
+
+## Data flow
+
+1. Load synthetic issues, recent deploys, runbooks, contracts, and policy.
+2. Rank issues by impact, production signal, deploy timing, and runbook match.
+3. Produce evidence-backed action drafts.
+4. Scan contracts for policy drift.
+5. Show everything in the dashboard before any action leaves the system.
