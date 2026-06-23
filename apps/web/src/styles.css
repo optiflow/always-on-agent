@@ -141,7 +141,8 @@ h3 {
 }
 
 .watch-state,
-.last-run {
+.last-run,
+.run-status {
   align-items: center;
   background: var(--soft);
   border: 1px solid var(--border);
@@ -152,6 +153,12 @@ h3 {
   gap: 6px;
   min-height: 36px;
   padding: 0 10px;
+}
+
+.run-status.complete {
+  background: #ecfdf3;
+  border-color: #86efac;
+  color: #166534;
 }
 
 .primary-button,

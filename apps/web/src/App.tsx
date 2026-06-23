@@ -89,9 +89,13 @@ export default function App() {
               <Clock3 size={15} />
               <span>Last run {formatTime(run.generatedAt)}</span>
             </div>
+            <div className={`run-status ${runCount > 0 ? "complete" : ""}`} aria-live="polite">
+              <CheckCircle2 size={15} />
+              <span>{runCount > 0 ? `Run ${runCount} complete` : "Ready"}</span>
+            </div>
             <button className="primary-button" type="button" onClick={runNow}>
               <Play size={16} />
-              Run now
+              {runCount > 0 ? "Run again" : "Run now"}
             </button>
           </div>
         </header>
